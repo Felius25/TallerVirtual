@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///C:/Users/SAMILEN/Downloads/taller-atencion-cliente.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Virtual de Atención al Cliente | TRUCKENGINE SAS</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f2f5, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .container {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .module {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+    .module:hover {
+      transform: translateY(-5px);
+    }
+    h3 {
+      color: #00509d;
+      margin-top: 0;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result, #feedback, #module1Feedback, #module4Feedback, #reflectionResult {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Taller Virtual de Atención al Cliente</h1>
+    <p>Capacitación dinámica e interactiva - TRUCKENGINE SAS</p>
+  </header>
+
+  <div class="container">
+    <div class="module">
+      <h3>Módulo 1: Fundamentos de la Atención al Cliente</h3>
+      <div class="question">
+        <label>¿Qué crees que es lo más importante en la atención al cliente?</label>
+        <textarea id="module1Input" rows="3"></textarea>
+      </div>
+      <button onclick="checkModule1()">Enviar</button>
+      <p id="module1Feedback"></p>
+    </div>
+
+    <div class="module">
+      <h3>Módulo 2: Simulación Interactiva</h3>
+      <div class="question">
+        <label>Escenario:</label>
+        <p><strong>Un cliente está molesto porque su pedido no ha llegado a tiempo. ¿Cómo lo atenderías?</strong></p>
+        <textarea id="scenario" rows="4"></textarea>
+      </div>
+      <button onclick="showFeedback()">Enviar respuesta</button>
+      <p id="feedback"></p>
+    </div>
+
+    <div class="module">
+      <h3>Módulo 3: Test de Conocimientos</h3>
+      <div class="question">
+        <label>1. ¿Qué actitud es ideal al tratar con un cliente molesto?</label>
+        <select id="q1">
+          <option value="">Selecciona una respuesta</option>
+          <option value="correct">Escuchar con paciencia y ofrecer soluciones</option>
+          <option value="incorrect">Ignorar al cliente</option>
+          <option value="incorrect">Responder con el mismo tono</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>2. ¿Qué significa empatía?</label>
+        <select id="q2">
+          <option value="">Selecciona una respuesta</option>
+          <option value="correct">Ponerse en el lugar del otro</option>
+          <option value="incorrect">Decir lo que el cliente quiere oír</option>
+          <option value="incorrect">Culpar al cliente</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>3. ¿Cuál es el primer paso para resolver una queja del cliente?</label>
+        <select id="q3">
+          <option value="">Selecciona una respuesta</option>
+          <option value="correct">Escuchar la queja con atención</option>
+          <option value="incorrect">Ofrecer un reembolso sin preguntar</option>
+          <option value="incorrect">Culpar al sistema</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>4. ¿Qué tipo de lenguaje es más recomendable con un cliente enojado?</label>
+        <select id="q4">
+          <option value="">Selecciona una respuesta</option>
+          <option value="correct">Lenguaje calmado y respetuoso</option>
+          <option value="incorrect">Lenguaje técnico y frío</option>
+          <option value="incorrect">Tono de voz alto y firme</option>
+        </select>
+      </div>
+      <button onclick="checkAnswers()">Verificar respuestas</button>
+      <p id="result"></p>
+    </div>
+
+    <div class="module">
+      <h3>Módulo 4: Herramientas para Mejorar la Atención</h3>
+      <p>Selecciona las herramientas que consideras útiles para mejorar la atención:</p>
+      <div class="question">
+        <input type="checkbox" id="crm"> CRM<br>
+        <input type="checkbox" id="plantillas"> Plantillas de respuesta<br>
+        <input type="checkbox" id="canales"> Canales efectivos<br>
+        <input type="checkbox" id="rumores"> Escuchar rumores<br>
+      </div>
+      <button onclick="checkModule4()">Enviar</button>
+      <p id="module4Feedback"></p>
+    </div>
+
+    <div class="module">
+      <h3>Módulo 5: Reflexión Final</h3>
+      <div class="question">
+        <label>¿Qué aprendiste sobre ti mismo atendiendo clientes?</label>
+        <textarea id="reflection1" rows="3"></textarea>
+      </div>
+      <div class="question">
+        <label>¿Qué estrategias aplicarás en tu próximo contacto con un cliente?</label>
+        <textarea id="reflection2" rows="3"></textarea>
+      </div>
+      <button onclick="checkReflection()">Enviar reflexión</button>
+      <p id="reflectionResult"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 TRUCKENGINE SAS | Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    function checkModule1() {
+      const input = document.getElementById('module1Input').value.trim();
+      const feedback = document.getElementById('module1Feedback');
+      if (input.length > 10) {
+        feedback.innerText = '¡Gracias! Has identificado una cualidad esencial en la atención al cliente.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.innerText = 'Escribe una respuesta más completa.';
+        feedback.style.color = 'red';
+      }
+    }
+
+    function showFeedback() {
+      const response = document.getElementById('scenario').value.trim();
+      const feedback = document.getElementById('feedback');
+      if (response.length < 10) {
+        feedback.innerText = 'Por favor, escribe una respuesta más detallada.';
+        feedback.style.color = 'red';
+      } else {
+        feedback.innerText = '¡Muy bien! Has demostrado empatía y disposición para solucionar el problema.';
+        feedback.style.color = 'green';
+      }
+    }
+
+    function checkAnswers() {
+      const q1 = document.getElementById('q1').value;
+      const q2 = document.getElementById('q2').value;
+      const q3 = document.getElementById('q3').value;
+      const q4 = document.getElementById('q4').value;
+      const result = document.getElementById('result');
+      if (q1 === 'correct' && q2 === 'correct' && q3 === 'correct' && q4 === 'correct') {
+        result.innerText = '¡Excelente! Has respondido correctamente a todas las preguntas.';
+        result.style.color = 'green';
+      } else {
+        result.innerText = 'Algunas respuestas son incorrectas. Revisa y vuelve a intentarlo.';
+        result.style.color = 'red';
+      }
+    }
+
+    function checkModule4() {
+      const crm = document.getElementById('crm').checked;
+      const plantillas = document.getElementById('plantillas').checked;
+      const canales = document.getElementById('canales').checked;
+      const rumores = document.getElementById('rumores').checked;
+      const feedback = document.getElementById('module4Feedback');
+      if (crm && plantillas && canales && !rumores) {
+        feedback.innerText = '¡Correcto! Estas herramientas te ayudarán a mejorar la atención al cliente.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.innerText = 'Algunas herramientas seleccionadas no son adecuadas. Intenta de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+
+    function checkReflection() {
+      const r1 = document.getElementById('reflection1').value.trim();
+      const r2 = document.getElementById('reflection2').value.trim();
+      const result = document.getElementById('reflectionResult');
+      if (r1.length > 10 && r2.length > 10) {
+        result.innerText = '¡Gracias por reflexionar! Tu compromiso mejorará el servicio al cliente en TRUCKENGINE SAS.';
+        result.style.color = 'green';
+      } else {
+        result.innerText = 'Por favor, escribe reflexiones más completas.';
+        result.style.color = 'red';
+      }
+    }
+  </script>
+
+
+</body></html>
